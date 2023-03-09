@@ -1,0 +1,144 @@
+<html lang="en" style="background-color: rgba(116, 57, 182, 0.817); overflow: auto;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body style="display: flex; flex-direction: column; align-items: center;">
+    <div class="box" style="display: flex; flex-direction: column; background-color: rgb(247,247,247); width: 400px; height: 300px; align-items: center; justify-content: center; border-radius: 50px;">
+        <h2 style="margin: 0 0 0 0;">Please enter your details here!</h2>
+        <p class="h5" style="color: rgb(29, 163, 29); visibility: hidden;">You successfully registered!</p>
+        <form action="" style="display: flex; flex-direction: column; justify-content: center;">
+            <table style="display: flex; justify-content: center;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="name">Name:</label>
+                        </td>
+                        <td>
+                            <input  class="nameBox" style="border: 0.5px double black;  padding: 5px 7px 5px 7px;" type="name" placeholder="Your name" style="display: inline;"  data-autosave-url="UserInfo" name="name" id="name">
+                            <abbr title="" aria-required="true" style="color: red; display: inline;">*</abbr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="email">E-mail:</label>
+                        </td>
+                        <td>
+                            <input  class="emailBox" style="border: 0.5px double black;  padding: 5px 7px 5px 7px;" type="email" placeholder="Your e-mail" style="display: inline;"  data-autosave-url="UserInfo" name="email" id="email">
+                            <abbr title="" aria-required="true" style="color: red; display: inline;">*</abbr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="pswrd">Password:</label>
+                        </td>
+                        <td>
+                            <input class="pswrdBox" type="password" style="border: 0.5px double black;  padding: 5px 7px 5px 7px;" type="password" placeholder="Password" style="display: inline;" maxlength="20" name="pswrd" id="pswrd" data-autosave-url="UserInfo"  >
+                            <abbr title="" aria-required="true" style="color: red; display: inline;">*</abbr>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px;">
+                <button class="button1" type="button" style="width: 100px; background: none; border: none;">
+                    Back
+                </button>
+                <button class="button" type="button" style="width: 100px; background: none; border: none;">
+                    Confirm
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+<style>
+    .button:hover,.button1:hover{
+        cursor: pointer;
+        color: rgb(160, 84, 84);
+    }
+    icon{
+        display: flex;
+        color: rgb(7, 88, 57);
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+</style>
+<script>
+    const nameBox = document.querySelector(".nameBox")
+    const emailBox = document.querySelector(".emailBox")
+    const pswrdBox = document.querySelector(".pswrdBox")
+    const confirmBtn = document.querySelector(".button")
+    const backBtn = document.querySelector(".button1")
+
+    document.addEventListener('DOMContentLoaded', () =>{
+
+        let loadingSign = document.createElement('div');
+        loadingSign.innerText = 'Loading...';
+        loadingSign.style.display = 'none';
+        loadingSign.style.color = 'white';
+        loadingSign.style.backgroundColor = 'black';
+        loadingSign.style.position = 'absolute';
+        loadingSign.style.top = '50%';
+        loadingSign.style.left = '50%';
+        loadingSign.style.transform = 'translate(-50%, -50%)';
+        loadingSign.style.padding = '20px';
+        loadingSign.style.borderRadius = '10px';
+        document.body.appendChild(loadingSign);
+
+        document.querySelectorAll('[data-autosave-url]').forEach(inputField => {
+            inputField.addEventListener('change', async ()=> {
+
+                const name = inputField.getAttribute("name");
+                const value = inputField.value;
+                const url = inputField.dataset.autosaveUrl;
+                const formData = new FormData();
+
+                formData.append(name, value);
+                    
+                window.localStorage.setItem(name, value);
+                
+                console.log(name, value)
+            })
+        })
+        let dots = '';
+
+        const interval = setInterval(() => {
+        if (dots.length > 2) {
+            dots = '';
+        } else {
+            dots += '.';
+        }
+        loadingSign.textContent = `Loading${dots}`;
+        }, 500);
+
+        confirmBtn.addEventListener('click', () => {
+            loadingSign.style.display = 'block';
+            setTimeout(() => {
+                loadingSign.style.display = 'none';
+                window.location.href = 'login.html'; 
+            }, 3000); 
+        });
+
+        if(localStorage.getItem('email') !== null){
+            console.log(`Email address has been added`);
+            console.log(localStorage.getItem('email'))
+        }else {
+            console.log(`Email address not found`);
+        }
+        if(localStorage.getItem('name') !== null){
+            console.log(`User name address has been added`);
+            console.log(localStorage.getItem('email'))
+        }else {
+            console.log(`User name address not found`);
+        }
+
+        if(localStorage.getItem('pswrd') !== null){
+            console.log(`Password has been added`);
+            console.log(localStorage.getItem('pswrd'))
+        }else {
+            console.log(`Password not found`);
+        }
+    }); 
+</script>
+</html>

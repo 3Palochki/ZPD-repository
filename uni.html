@@ -1,0 +1,152 @@
+<html lang="en" style="background-color: rgba(116, 57, 182, 0.817); overflow: auto;">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="icon" type="image/x-icon" href="Icons/graduation-cap-solid.svg">
+  <title>Universitātes</title>
+</head>
+<body>
+  <header>
+    <div class="menu" style="background-color: rgb(247, 247, 247); width: 80px; height: 400px; margin: 140px -8px -5px -8px; border-radius: 0px 50px 50px 0px; position: fixed;">
+        <div class="icons" style="display: flex; flex-direction: column; align-items: center; margin-left: -5px; padding-top: 37px;">
+            <div class="icon"><i class="fa-solid fa-house" id="home"></i></div>
+            <div class="icon"><i class="fa-solid fa-user" id="user"></i></div>
+            <div class="icon"><i class="fa-solid fa-box-archive" id="archive"></i></div>
+            <div class="icon"><i class="fa-solid fa-graduation-cap" id="uni"></i></div>
+            <div class="icon"><i class="fa-solid fa-headphones" id="music"></i></div>
+        </div>
+    </div>
+</header>
+    <div class="box" style="background-color: rgb(247, 247, 247); margin-left: 120px; margin-bottom: 50px;; border-radius: 50px; width: 1100px; margin-top: 50px; height: auto; margin-bottom: 50px;">
+      <div class="mainDiv">
+        <h1  style="display: flex; flex-direction: row; justify-content: center; font-size: 48px; padding-top: 20px;">Universities</h1>
+        
+        <div class="search" style="display: flex; flex-direction: column; padding-top: 40px; margin-left: 40px;">
+          <p>Here you can find any music colleges and universities</p>
+            <label for="username">
+            <form action="" class="search_form">
+                <input type="text" placeholder="Search..." style="border-radius: 20px; width: 250px; height: 30px; padding: 0 35px 0 10px; font-size: large;">
+                <button class="magnifyingGlass" style="margin-left: -35px; background: none; border: none;">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size: large; z-index: 99999; height: 15px; width: 15px; margin-left: -3px;"></i>
+                </button>
+                <select id="country-select" style="margin-left: 20px; border-radius: 20px; width: 250px; height: 30px; padding: 0 35px 0 10px; font-size: large;">
+                  <option value="selected">Select country</option>
+                </select>
+            </form>
+        </div>      
+      </div>
+  
+      <div id="university-list" style="margin: 30px 0 50px 50px"></div>
+    </div>
+</body>
+<style>
+  .icon{
+        display: flex;
+        color: rgb(7, 88, 57);
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    .icon:hover{
+        color: rgb(7, 199, 125);
+        cursor: pointer;
+        font-size: 55px;
+        transition-duration: 0.2s;
+    }
+    .magnifyingGlass:hover{
+        cursor: pointer;
+    }
+</style>
+<script>
+const home = document.getElementById('home')
+const archive = document.getElementById('archive')
+const user = document.getElementById('user')
+const uni = document.getElementById('uni')
+const music = document.getElementById('music')
+
+console.log(home,archive, user, uni)
+
+home.addEventListener('click', () => {
+    window.location = 'main.html'
+});
+archive.addEventListener('click', () => {
+    window.location = 'login.html'
+})
+user.addEventListener('click', () => {
+    window.location = 'user.html'
+})
+music.addEventListener('click', () => {
+    alert('This action will take you to exterior page.\n Do you wish to continue?')
+    window.location = 'https://www.classicalarchives.com/newca/#!/allComposer'
+})
+uni.addEventListener('click', () => {
+    window.location = 'uni.html'
+})
+</script>
+<script>
+let universityData = [], list = document.querySelector("#university-list");
+
+fetch("https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json")
+.then((response) => response.json())
+.then((data) => {
+  universityData = data;
+  const input = document.querySelector('input[type="text"]');
+  const searchBtn = document.querySelector(".magnifyingGlass");
+  const countrySelect = document.querySelector("#country-select");
+  const orderSelect = document.querySelector("#order-select");
+  const countries = Array.from(new Set(universityData.map((university) => university.country)));
+  countries.forEach((country) => {
+    const option = document.createElement("option");
+    option.value = country;
+    option.text = country;
+    countrySelect.appendChild(option);
+  });
+
+  countrySelect.addEventListener("change", function () {
+    const selectedCountry = this.value;
+    const filteredData = universityData.filter((university) => {
+      return selectedCountry === "" || university.country === selectedCountry;
+    });
+    displayUniversities(filteredData);
+  });
+
+  const createUniversityElement = (university) => {
+    const div = document.createElement("a");
+    div.href = university.web_pages;
+    div.setAttribute("target", "_blank");
+    div.innerHTML = `<h3 style="display:flex;">${university.name}, </h3><h3 style="display:flex;padding: 0px 5px 0px 5px; font-weight: lighter;">${university.alpha_two_code}, </h3><h3 style="display:flex;padding: 0px 5px 0px 5px; font-weight: lighter;">${university.country}</h3>`;
+    div.style.cssText = `width: 900px; display: flex; padding: 10px 0px 10px 20px;background-color: rgb(240,240,240); margin-bottom: 10px; flex-direction: row; border-radius: 30px; text-decoration: none; color: black;`;
+    div.addEventListener("mouseover", () => div.style.backgroundColor = `rgb(200, 200, 200)`);
+    div.addEventListener("mouseleave", () => div.style.backgroundColor = `rgb(240, 240, 240)`);
+    return div;
+  };
+
+  const displayUniversities = (universities) => {
+    list.innerHTML = "";
+    universities.sort((a, b) => (a.name > b.name ? 1 : -1));
+    universities.forEach((university) => list.appendChild(createUniversityElement(university)));
+  };
+  
+    searchBtn.addEventListener("click", e => {
+      e.preventDefault();
+      const value = input.value.toLowerCase();
+      const filteredData = universityData.filter(university => 
+        university.name.toLowerCase().includes(value) || 
+        university.alpha_two_code.toLowerCase().includes(value) || 
+        university.country.toLowerCase().includes(value)
+      );
+      if (filteredData.length === 0) {
+        list.innerHTML = "Please, input valid University Name or Country!";
+        return;
+      }
+      displayUniversities(filteredData);
+    });
+    displayUniversities(universityData);
+    console.log(universityData)
+})
+.catch(error => console.error(error));
+
+</script>
+
+</html>

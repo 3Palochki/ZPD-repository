@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: rgba(116, 57, 182, 0.817); overflow: auto;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="icon" href="Icons/box-archive-solid.svg">
+    <title>Archive</title>
+
+</head>
+    <body style="display: flex; flex-direction: row;">
+        <header>
+            <div class="menu" style="background-color: rgb(247, 247, 247); width: 80px; height: 400px; margin: 140px -8px -5px -8px; border-radius: 0px 50px 50px 0px; position: fixed;">
+                <div class="icons" style="display: flex; flex-direction: column; align-items: center; margin-left: -5px; padding-top: 37px;">
+                    <div class="icon"><i class="fa-solid fa-house" id="home"></i></div>
+                    <div class="icon"><i class="fa-solid fa-user" id="user"></i></div>
+                    <div class="icon"><i class="fa-solid fa-box-archive" id="archive"></i></div>
+                    <div class="icon"><i class="fa-solid fa-graduation-cap" id="uni"></i></div>
+                    <div class="icon"><i class="fa-solid fa-headphones" id="music"></i></div>
+                </div>
+            </div>
+        </header>
+        <div class="mainDiv" style="background-color: rgb(247, 247, 247); margin-left: 120px; border-radius: 50px; width: 1100px; margin-top: 50px; height: auto; margin-bottom: 50px;">
+            <div class="search" style="margin-top: 40px; margin-left: 40px; margin-right: 40px;">
+                <h1 style="font-weight: 100; display: flex; font-size: 72px; flex-direction: column; align-items: center;">Komponistu arhīvs</h1>
+                <p>Meklē šeit komponistu par kuru gribi uzzināt vairāk!</p>
+
+                <label for="username">
+                <form action="" class="search_form">
+                    <input type="text" placeholder="Meklēt..." style="border-radius: 20px; width: 250px; height: 30px; padding: 0 35px 0 10px; font-size: large;">
+                    <button class="magnifyingGlass" style="margin-left: -35px; background: none; border: none;">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: large; z-index: 99999; height: 15px; width: 15px; margin-left: -3px;"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="archive" style="display: flex; flex-direction: column; padding: 40px 30px 40px 50px; width: 700px; align-self: center;"></div>      
+        </div>
+    </body>
+<style>
+    .icon{
+        display: flex;
+        color: rgb(7, 88, 57);
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    .icon:hover{
+        color: rgb(7, 199, 125);
+        cursor: pointer;
+        font-size: 55px;
+        transition-duration: 0.2s;
+    }
+    .magnifyingGlass:hover{
+        cursor: pointer;
+    }
+</style>
+<script src="archive.js"></script>
+</html>

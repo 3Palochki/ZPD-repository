@@ -1,0 +1,174 @@
+<html lang="en" style="background-color: rgba(116, 57, 182, 0.817); overflow: auto;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Login page</title>
+</head>
+<body>
+    <header>
+        <div class="menu" style="background-color: rgb(247, 247, 247); width: 80px; height: 400px; margin: 140px -8px -5px -8px; border-radius: 0px 50px 50px 0px; position: fixed; display: absolute;">
+            <div class="icons" style="display: flex; flex-direction: column; align-items: center; margin-left: -5px; padding-top: 37px;">
+                <div class="icon"><i class="fa-solid fa-house" id="home"></i></div>
+                <div class="icon"><i class="fa-solid fa-user" id="user"></i></div>
+                <div class="icon"><i class="fa-solid fa-box-archive" id="archive"></i></div>
+                <div class="icon"><i class="fa-solid fa-graduation-cap" id="uni"></i></div>
+                <div class="icon"><i class="fa-solid fa-headphones" id="music"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <div style="display: flex; align-items: center; flex-direction: column;">
+        <h2>To see our archive - log in</h2>
+
+        <form name="form" method="post" style="display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: center;">
+                <table>
+                    <tbody>
+                        <tr>
+                                <tr style="display: flex; justify-content: space-between;">
+                                    <td style="padding-top: 3px; align-items: center;">
+                                        <label for="email">E-mail: </label>                                
+                                    </td>
+                                    <td style="padding-top: 0px;">
+                                        <input  class="input" style="border: 0.5px double black;  padding: 5px 7px 5px 7px;" type="email" placeholder="Your e-mail" style="display: inline;"  data-autosave-url="UserInfo" name="email" id="email">
+                                        <abbr title="" aria-required="true" style="color: red; display: inline;">*</abbr>
+                                    </td>
+                                </tr>
+                                <tr style="display: flex;">
+                                    <td style="padding-top: 3px; align-items: center;">
+                                        <label for="pswrd"> Password: </label>                     
+                                    </td>
+                                    <td style="padding-top: 0px;">
+                                        <input class="input2" type="password" style="border: 0.5px double black;  padding: 5px 7px 5px 7px;" type="password" placeholder="Password" style="display: inline;" maxlength="20" name="pswrd" id="pswrd" data-autosave-url="UserInfo"  >
+                                        <abbr title="" aria-required="true" style="color: red; display: inline;">*</abbr>
+                                    </td>
+                                </tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px;">
+                <button class="button"  type="button" style="width: 100px; background: none; border: none;">
+                    Back
+                </button>
+                <button class="button1" type="button" style="width: 100px; background: none; border: none;">
+                    Confirm
+                </button>
+            </div>
+        </form>
+
+
+        <a href="reg.html">Click to register</a>
+    </div>
+</body>
+<style>
+    .button:hover,.button1:hover{
+        cursor: pointer;
+        color: aliceblue;
+    }
+
+    .icon{
+        display: flex;
+        color: rgb(7, 88, 57);
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    .icon:hover{
+        color: rgb(7, 199, 125);
+        cursor: pointer;
+        font-size: 55px;
+        transition-duration: 0.2s;
+    }
+    .magnifyingGlass:hover{
+        cursor: pointer;
+    }
+</style>
+<script>
+    const home = document.getElementById('home')
+    const archive = document.getElementById('archive')
+    const music = document.getElementById('music')
+    const uni = document.getElementById('uni')
+    
+    console.log(home,archive, music, uni)
+    
+    home.addEventListener('click', () => {
+        window.location = 'main.html'
+    });
+    archive.addEventListener('click', () => {
+        window.location = 'login.html'
+    })
+    music.addEventListener('click', () => {
+        window.location = 'https://www.classicalarchives.com/newca/#!/allComposer'
+    })
+    uni.addEventListener('click', () => {
+        window.location = 'uni.html'
+    })
+</script>
+<script>
+    const emailBox = document.querySelector(".input")
+    const pswrdBox = document.querySelector(".input2")
+    const backBtn = document.querySelector(".button")
+    const confirmBtn = document.querySelector(".button1")
+
+    console.log(emailBox, pswrdBox)
+
+    backBtn.addEventListener("click", ()=>{
+        window.location = 'main.html'
+    })
+
+    if(localStorage.getItem('email') !== null){
+        console.log(`Email address exists`);
+        console.log(localStorage.getItem('email'))
+    }else {
+        console.log(`Email address not found`);
+    }
+
+    if(localStorage.getItem('pswrd') !== null){
+        console.log(`Password exists`);
+        console.log(localStorage.getItem('pswrd'))
+    }else {
+        console.log(`Password not found`);
+    } 
+    if(emailBox.value = localStorage.getItem('email'), pswrdBox.value = localStorage.getItem('pswrd')){
+
+        confirmBtn.addEventListener('click', () => {
+            window.location = 'archive.html'
+            console.log('Log in succesfull')
+            localStorage.setItem("Service", 'Log in succesfull')
+        })
+    
+    }
+    let loadingSign = document.createElement('div');
+        loadingSign.innerText = 'Loading...';
+        loadingSign.style.display = 'none';
+        loadingSign.style.color = 'white';
+        loadingSign.style.backgroundColor = 'black';
+        loadingSign.style.position = 'absolute';
+        loadingSign.style.top = '50%';
+        loadingSign.style.left = '50%';
+        loadingSign.style.transform = 'translate(-50%, -50%)';
+        loadingSign.style.padding = '20px';
+        loadingSign.style.borderRadius = '10px';
+        document.body.appendChild(loadingSign);
+        
+    let dots = '';
+    const interval = setInterval(() => {
+    if (dots.length > 2) {
+        dots = '';
+    } else {
+        dots += '.';
+    }
+    loadingSign.textContent = `Loading${dots}`;
+    }, 500);
+
+    confirmBtn.addEventListener('click', () => {
+        loadingSign.style.display = 'block';
+        setTimeout(() => {
+            loadingSign.style.display = 'none';
+            window.location.href = 'archive.html'; 
+        }, 3000); 
+    });
+</script>
+</html>

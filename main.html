@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html style="background-color: rgba(116, 57, 182, 0.817); background-repeat: repeat-y; background-size: 100%; overflow: auto;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="icon" href="Icons/house-solid.svg">
+    <title>Home page</title>
+
+</head>
+    <body style="display: flex; flex-direction: row; position: absolute;">
+        <header class="vertical" style="z-index: 99999; position: fixed;">
+            <div class="menu" style="background-color: rgb(247, 247, 247); width: 80px; height: 400px; margin: 140px -8px -5px -8px; border-radius: 0px 50px 50px 0px;">
+                <div class="icons" style="display: flex; flex-direction: column; align-items: center; margin-left: -5px; padding-top: 37px;">
+                    <div class="icon"><i class="fa-solid fa-house" id="home"></i></div>
+                    <div class="icon"><i class="fa-solid fa-user" id="user" ></i></div>
+                    <div class="icon"><i class="fa-solid fa-box-archive" id="archive"></i></div>
+                    <div class="icon"><i class="fa-solid fa-graduation-cap" id="uni"></i></div>
+                    <div class="icon"><i class="fa-solid fa-headphones" id="music"></i></div>
+                </div>
+            </div>
+        </header>
+        <div class="container" style="display: flex; margin-top: 50px;">
+            <div class="basic" style="display: flex; flex-direction: column;">
+                <div class="div" style="overflow: auto;">
+                    <h2 style="z-index: 9999; position:relative;">Composers' Library</h2>
+                    <h4 style="font-weight: 100;"> On this site you will find various information on composers and their works and periods of activity. <br><br><br>
+                        <div class="img" style="display: flex; flex-direction: row; justify-content: center;">
+                            <img width="300px"  src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/music-notes-map-of-the-world-map-michael-tompsett.jpg" alt="music">
+                        </div>
+                        
+                </div>
+                <div class="div2" style="overflow: auto;">
+                    <h2>Contact Us</h2>
+                    <p>Phone: +371 2*******<br>
+                        Email: musicians@library.com
+                    </p>
+                </div>
+            </div>
+            <div class="basic" style="display: flex;">
+                <div class="div3" style="overflow: auto;">
+                    <h2 style="z-index: 9999">Guess the composer</h2>
+                    <div class="container">
+                        <img id="portrait"/>
+                        <div id="options"></div>
+                    </div>
+                    <div class="container2">
+                        <div id="result-box">
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </body>
+<style>
+    .icon{
+        display: flex;
+        color: rgb(7, 88, 57);
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    .icon:hover{
+        color: rgb(7, 199, 125);
+        cursor: pointer;
+        font-size: 55px;
+        transition-duration: 0.2s;
+    }
+    .div{
+        background-color: rgb(247, 247, 247);
+        border-radius: 50px;
+        left: 140px;
+        top: 10px;
+        width: 515px;
+        height: 370px;
+        padding-left: 30px;
+        padding-top: 10px;
+        padding-right: 30px;
+        margin-top: 10px;
+        margin-left: 30px;
+        position: absolute;
+    }
+    .div2{
+        background-color: rgb(247, 247, 247);
+        border-radius: 50px;
+        left: 140px;
+        top: 410px;
+        width: 515px;
+        height: 220px;
+        padding-left: 30px;
+        padding-top: 10px;
+        margin-top: 10px;
+        padding-right: 30px;
+        margin-left: 30px;
+        position: absolute;
+    }
+    .div3{
+        background-color: rgb(247, 247, 247);
+        border-radius: 50px;
+        left: 750px;
+        width: 430px;
+        height: 620px;
+        padding-left: 50px;
+        padding-top: 10px;
+        margin-top: -30px;
+        margin-left: 20px;
+        position: absolute;
+    }
+    .picture img {
+    width: 400px;
+    height: 400px;
+    }
+
+    .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    }
+
+    button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(126, 128, 52);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    }
+
+    button:hover {
+    background-color: rgb(178, 180, 37);
+    }
+
+</style>
+<script>
+const home = document.getElementById('home')
+const archive = document.getElementById('archive')
+const user = document.getElementById('user')
+const uni = document.getElementById('uni')
+const music = document.getElementById('music')
+
+console.log(home,archive, user, uni)
+
+home.addEventListener('click', () => {
+    window.location = 'main.html'
+});
+archive.addEventListener('click', () => {
+    window.location = 'login.html'
+})
+user.addEventListener('click', () => {
+    window.location = 'user.html'
+})
+music.addEventListener('click', () => {
+    alert('This action will take you to exterior page.\n Do you wish to continue?')
+    window.location = 'https://www.classicalarchives.com/newca/#!/allComposer'
+})
+uni.addEventListener('click', () => {
+    window.location = 'uni.html'
+})
+</script>
+<script src="main.js"></script>
+</html>
